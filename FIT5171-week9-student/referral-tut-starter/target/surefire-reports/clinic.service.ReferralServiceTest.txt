@@ -1,0 +1,52 @@
+-------------------------------------------------------------------------------
+Test set: clinic.service.ReferralServiceTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 1, Errors: 4, Skipped: 0, Time elapsed: 0.293 s <<< FAILURE! -- in clinic.service.ReferralServiceTest
+clinic.service.ReferralServiceTest.nullPatientIsRejectedBeforeCollaboratorsRun -- Time elapsed: 0.271 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <java.lang.UnsupportedOperationException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at clinic.service.ReferralServiceTest.nullPatientIsRejectedBeforeCollaboratorsRun(ReferralServiceTest.java:47)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+Caused by: java.lang.UnsupportedOperationException: TODO: implement createReferral
+	at clinic.service.ReferralService.createReferral(ReferralService.java:35)
+	at clinic.service.ReferralServiceTest.lambda$nullPatientIsRejectedBeforeCollaboratorsRun$0(ReferralServiceTest.java:48)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
+clinic.service.ReferralServiceTest.approvedReferralReservesSlotAndSendsSuccess -- Time elapsed: 0.011 s <<< ERROR!
+java.lang.UnsupportedOperationException: TODO: implement createReferral
+	at clinic.service.ReferralService.createReferral(ReferralService.java:35)
+	at clinic.service.ReferralServiceTest.approvedReferralReservesSlotAndSendsSuccess(ReferralServiceTest.java:59)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+clinic.service.ReferralServiceTest.approvedReferralWithNoSlotSendsWaitlist -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: TODO: implement createReferral
+	at clinic.service.ReferralService.createReferral(ReferralService.java:35)
+	at clinic.service.ReferralServiceTest.approvedReferralWithNoSlotSendsWaitlist(ReferralServiceTest.java:85)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+clinic.service.ReferralServiceTest.rejectedReferralDoesNotReserveSlotAndSendsFailure -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: TODO: implement createReferral
+	at clinic.service.ReferralService.createReferral(ReferralService.java:35)
+	at clinic.service.ReferralServiceTest.rejectedReferralDoesNotReserveSlotAndSendsFailure(ReferralServiceTest.java:71)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+clinic.service.ReferralServiceTest.approvedReferralWithNoSpecialistSendsWaitlistAndSkipsBooking -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: TODO: implement createReferral
+	at clinic.service.ReferralService.createReferral(ReferralService.java:35)
+	at clinic.service.ReferralServiceTest.approvedReferralWithNoSpecialistSendsWaitlistAndSkipsBooking(ReferralServiceTest.java:98)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

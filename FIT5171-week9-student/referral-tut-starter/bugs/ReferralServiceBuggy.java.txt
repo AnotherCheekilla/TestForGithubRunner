@@ -1,0 +1,72 @@
+// =============================================================================
+// Buggy reference implementation for Phase 5 of the Week 9 applied session.
+//
+// HOW TO USE:
+//   1. Make sure your own ReferralService.java passes mvn test first.
+//   2. Copy the *body* of createReferral(...) below into your ReferralService.java
+//      (or temporarily replace the whole class), then run mvn test.
+//   3. Some tests will fail. Some bugs your tests will NOT catch.
+//      Your job is to find every bug.
+//   4. Restore your correct implementation when you finish Phase 5.
+//
+// This file is .java.txt on purpose so Maven does not try to compile it.
+// =============================================================================
+
+package clinic.service;
+
+import clinic.model.EligibilityDecision;
+import clinic.model.Patient;
+import clinic.model.ReferralRequest;
+import clinic.model.ReferralResult;
+import clinic.policy.EligibilityPolicy;
+
+public class ReferralService {
+    private final EligibilityPolicy eligibilityPolicy;
+    private final SpecialistDirectory specialistDirectory;
+    private final BookingService bookingService;
+    private final NotificationService notificationService;
+
+    public ReferralService(EligibilityPolicy eligibilityPolicy,
+                           SpecialistDirectory specialistDirectory,
+                           BookingService bookingService,
+                           NotificationService notificationService) {
+        this.eligibilityPolicy = eligibilityPolicy;
+        this.specialistDirectory = specialistDirectory;
+        this.bookingService = bookingService;
+        this.notificationService = notificationService;
+    }
+
+    public ReferralResult createReferral(Patient patient, ReferralRequest request) {
+        if (patient == null || request == null) {
+            throw new IllegalArgumentException("patient and request are required");
+        }
+
+        EligibilityDecision decision = eligibilityPolicy.check(patient, request);
+        if (decision == null) {
+            throw new IllegalStateException("EligibilityPolicy must not return null");
+        }
+
+        if (decision == EligibilityDecision.REJECTED) {
+            notificationService.sendWaitlist(patient, request);
+            return ReferralResult.rejected("Referral rejected");
+        }
+
+        boolean specialistAvailable =
+                specialistDirectory.hasSpecialistFor(request.getSpecialty());
+        if (!specialistAvailable) {
+            notificationService.sendWaitlist(patient, request);
+            return ReferralResult.waitlisted("No specialist available");
+        }
+
+        boolean reserved = bookingService.reserveSlot(patient, request);
+        if (reserved) {
+            bookingService.reserveSlot(patient, request);
+            notificationService.sendSuccess(patient, request);
+            patient.setMedicareNumberPresent(false);
+            return ReferralResult.approved("Referral approved");
+        }
+
+        notificationService.sendWaitlist(patient, request);
+        return ReferralResult.waitlisted("No slot available");
+    }
+}

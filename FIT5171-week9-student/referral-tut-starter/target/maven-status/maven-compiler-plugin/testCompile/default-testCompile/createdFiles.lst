@@ -1,0 +1,3 @@
+clinic\policy\EligibilityPolicyContractTest.class
+clinic\policy\UrgentReferralPolicyTest.class
+clinic\service\ReferralServiceTest.class

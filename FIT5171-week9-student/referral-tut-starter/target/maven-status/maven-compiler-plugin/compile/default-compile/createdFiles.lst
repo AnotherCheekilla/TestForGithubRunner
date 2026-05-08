@@ -1,0 +1,11 @@
+clinic\model\EligibilityDecision.class
+clinic\model\Patient.class
+clinic\policy\UrgentReferralPolicy.class
+clinic\service\BookingService.class
+clinic\service\NotificationService.class
+clinic\model\ReferralRequest.class
+clinic\service\ReferralService.class
+clinic\service\SpecialistDirectory.class
+clinic\model\ReferralResult.class
+clinic\policy\EligibilityPolicy.class
+clinic\model\ReferralResult$Status.class
